@@ -1,0 +1,47 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2212                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      fvOptions;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+disk
+{
+    type            actuatorDiskForce;
+
+    fields          (U);    // Names of fields on which to apply source
+    startPoint      (0 0 0);
+    endPoint		(0.01 0 0);
+    interiorRadius	0.008;
+    exteriorRadius	0.127;
+
+    Ct      0.1;
+    Cp      0.048;
+    rpm     6000;
+
+    selectionMode   geometric;
+    selection
+    {
+        rotor
+        {
+            action      add;
+            source      cylinder;
+            p1          $startPoint;
+            p2          $endPoint;
+            radius      $exteriorRadius;
+            innerRadius $interiorRadius;
+        }
+    } 
+}
+
+
+// ************************************************************************* //
