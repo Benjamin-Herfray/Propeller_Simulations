@@ -1,0 +1,3 @@
+actuatorDiskForce.C
+
+LIB = $(FOAM_USER_LIBBIN)/libactuatorDiskForce
