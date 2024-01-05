@@ -1,0 +1,70 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2212                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volVectorField;
+    object      U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [m s^-1];
+
+internalField   uniform (0 0 0); // Static initial conditions
+
+boundaryField
+{
+    inlet
+    {
+        type            pressureInletOutletVelocity; // Inlet speed determined by pressure in flow
+        value           $internalField;
+    }
+
+    outlet
+    {
+        type            inletOutlet; // zero gradient for exiting flow. Flow cannot enter
+        inletValue      uniform (0 0 0);
+        //value           $internalField;
+    }
+
+    walls
+    {
+        type            pressureInletOutletVelocity;  // Air might also be entrained from the sides, so the conditions are the same as with the inlet.
+        value           $internalField;
+    }
+
+    hub
+    {
+        type            uniformFixedValue; // Noslip at hub
+    	uniformValue    uniform (0 0 0);
+    }
+    
+    symY
+    {
+        type            cyclic; // Cyclic conditions at angular boundaries
+    }
+
+    symZ
+    {
+        type            cyclic;
+    }
+
+    /* symY
+    {
+        type            symmetryPlane;
+    }
+
+    symZ
+    {
+        type            symmetryPlane;
+    } */
+}
+
+
+// ************************************************************************* //

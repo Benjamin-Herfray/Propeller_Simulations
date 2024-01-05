@@ -1,0 +1,61 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2212                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      fvSchemes;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+ddtSchemes
+{
+    default         steadyState; // Steady state simulation means there is no need for a time derivative scheme
+}
+
+gradSchemes
+{
+    default         Gauss linear; // Method of calculating gradients
+}
+
+divSchemes // Methods for calculating divergence
+{
+    default         none;
+
+    div(phi,U)      Gauss limitedLinearV 1;
+
+    turbulence      Gauss limitedLinear 1;
+    div(phi,k)      $turbulence;
+    div(phi,epsilon) $turbulence;
+    div(phi,nuTilda) $turbulence;
+    div(phi,s)      $turbulence;
+    div(phi,R)      $turbulence;
+    div(R)          Gauss linear;
+
+    div((nuEff*dev(T(grad(U))))) Gauss linear;
+    div((nuEff*dev2(T(grad(U))))) Gauss linear;
+}
+
+laplacianSchemes
+{
+    default         Gauss linear corrected; // Method for Laplacian
+}
+
+interpolationSchemes
+{
+    default         linear; // Linear interpolation between cell field values
+}
+
+snGradSchemes
+{
+    default         corrected; // Method for surface normal gradients
+}
+
+
+// ************************************************************************* //
