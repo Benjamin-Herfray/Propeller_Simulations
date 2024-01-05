@@ -10,4 +10,4 @@ Simulations are classified first by propeller model (e.g. GWS5x4.3) followed by 
 
 Most cases include both a main directory and a preparation directory; the preparation directory (indicated by a "Pre" at the end) run on coarser meshes and are designed to produce approximate field solutions faster. These approximate fields can then be mapped as initial conditions to the corresponding main directory simulation with a finer mesh. Preparation simulations can be run using the Allrun script. Main directories require running the Allprep first (which can be done at any time), followed by the Allrun, which must be launched after the preparation simulation has finished.
 
-Any questions or corrections are welcume at: benjamin[dot]herfray@mail.mcgill.ca
+Any questions or corrections are welcume at: benjamin.herfray[at]mail.mcgill.ca
