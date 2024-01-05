@@ -1,0 +1,9 @@
+The default circulation distribution was r*sqrt(1-r). Here we test different distributions:
+
+5425newDist2: r^2 * sqrt(1-r)
+
+5425newDist4: r^4 * sqrt(1-r)
+
+5425newDistLogistic: r*(1-r)
+
+
