@@ -1,0 +1,68 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2212                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    object      p;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [m^2 s^-2];
+
+internalField   uniform 0; // Default pressure is 0
+
+boundaryField
+{
+    inlet
+    {
+        type            totalPressure; // Maintain zero total pressure at inlet, i.e. p + 1/2 v^2 = 0
+        p0              uniform 0;
+    }
+
+    outlet
+    {
+        type            fixedValue; // Fix zero pressure at outlet
+        value           uniform 0;
+    }
+
+    walls
+    {
+        type            totalPressure; // Same as inlet, total pressure must remain zero far from the propeller
+        p0              uniform 0;
+    }
+
+    hub
+    {
+        type            zeroGradient; // Zero pressure gradient at a solid boundary.
+    }
+
+    symY
+    {
+        type            cyclic;
+    }
+
+    symZ
+    {
+        type            cyclic;
+    }
+
+    /* symY
+    {
+        type            symmetryPlane;
+    }
+
+    symZ
+    {
+        type            symmetryPlane;
+    } */
+}
+
+
+// ************************************************************************* //
