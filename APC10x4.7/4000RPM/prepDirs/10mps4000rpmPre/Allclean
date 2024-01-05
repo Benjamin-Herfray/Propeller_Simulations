@@ -1,0 +1,26 @@
+
+#!/bin/sh
+cd "${0%/*}" || exit                                # Run from this directory
+. ${WM_PROJECT_DIR:?}/bin/tools/CleanFunctions      # Tutorial clean functions
+#------------------------------------------------------------------------------
+
+cleanCase0
+
+rm -r Gnuplotting.analyzed
+
+rm PyFoamHistory
+
+rm PyFoamServer.info
+
+rm PyFoamState.CurrentTime
+
+rm PyFoamState.LastOutputSeen
+
+rm PyFoamState.StartedAt
+
+rm PyFoamState.TheState
+
+rm PyFoamRunner.mpirun.logfile
+
+rm actuatorDiskForce.vtk
+#------------------------------------------------------------------------------

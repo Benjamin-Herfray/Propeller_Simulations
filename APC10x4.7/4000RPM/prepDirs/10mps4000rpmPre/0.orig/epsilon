@@ -1,0 +1,70 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2212                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    object      epsilon;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [m^2 s^-3];
+
+internalField   uniform 0.0627;
+
+boundaryField
+{
+    inlet
+    {
+        type            turbulentMixingLengthDissipationRateInlet;
+        mixingLength    0.01875;
+        value           uniform 0.384;
+    }
+
+    outlet
+    {
+        type            inletOutlet;
+        inletValue      $internalField;
+        value           $internalField;
+    }
+
+    walls
+    {
+        type            zeroGradient;
+    }
+
+    hub
+    {
+        type            epsilonWallFunction;
+        value           $internalField;
+    }
+
+    symY
+    {
+        type            cyclic;
+    }
+
+    symZ
+    {
+        type            cyclic;
+    }
+
+    /* symY
+    {
+        type            symmetryPlane;
+    }
+
+    symZ
+    {
+        type            symmetryPlane;
+    } */
+}
+
+
+// ************************************************************************* //
