@@ -1,6 +1,8 @@
 # Propeller_Simulations
 A repository containing the propeller class file and simulations using the actuatorDiskSource custom OpenFoam class. The class appplies an unevenly distributed body force to the propeller region based on experimentally obtained propeller parameter values provided by the UIUC Propeller Data Site (https://m-selig.ae.illinois.edu/props/propDB.html).
 
+The class code is adapted from original code by Svenning: https://www.tfd.chalmers.se/~hani/kurser/OS_CFD_2010/erikSvenning/erikSvenningReport.pdf 
+
 
 Due to size limitations, I have only included simulation setups, which must be run by users once they have compiled the actuatorDiskForce class.
 
